@@ -20,10 +20,16 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.mariadb.jdbc:mariadb-java-client'
+    implementation 'org.mariadb.jdbc:mariadb-java-client:2.7.3'  // MariaDB 드라이버
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
+}
+
+tasks.withType(JavaCompile) {
+    options.annotationProcessorPath = configurations.annotationProcessor
 }
 
 tasks.named('test') {
