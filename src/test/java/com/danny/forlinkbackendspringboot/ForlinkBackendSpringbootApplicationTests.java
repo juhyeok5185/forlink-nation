@@ -1,9 +1,9 @@
 package com.danny.forlinkbackendspringboot;
 
-import com.danny.forlinkbackendspringboot.Member.Member;
-import com.danny.forlinkbackendspringboot.Member.MemberRepository;
-import com.danny.forlinkbackendspringboot.Nation.Nation;
-import com.danny.forlinkbackendspringboot.Nation.NationRepository;
+import com.danny.forlinkbackendspringboot.member.Member;
+import com.danny.forlinkbackendspringboot.member.MemberRepository;
+import com.danny.forlinkbackendspringboot.nation.Nation;
+import com.danny.forlinkbackendspringboot.nation.NationRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

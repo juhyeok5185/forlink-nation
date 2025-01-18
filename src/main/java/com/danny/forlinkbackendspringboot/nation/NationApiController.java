@@ -1,4 +1,4 @@
-package com.danny.forlinkbackendspringboot.Nation;
+package com.danny.forlinkbackendspringboot.nation;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

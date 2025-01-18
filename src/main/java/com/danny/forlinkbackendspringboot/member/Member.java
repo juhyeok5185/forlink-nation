@@ -1,7 +1,7 @@
-package com.danny.forlinkbackendspringboot.Member;
+package com.danny.forlinkbackendspringboot.member;
 
 
-import com.danny.forlinkbackendspringboot.Nation.Nation;
+import com.danny.forlinkbackendspringboot.nation.Nation;
 import jakarta.persistence.*;
 import lombok.*;
 

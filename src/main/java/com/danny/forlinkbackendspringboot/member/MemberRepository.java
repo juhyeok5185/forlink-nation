@@ -1,4 +1,4 @@
-package com.danny.forlinkbackendspringboot.Member;
+package com.danny.forlinkbackendspringboot.member;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

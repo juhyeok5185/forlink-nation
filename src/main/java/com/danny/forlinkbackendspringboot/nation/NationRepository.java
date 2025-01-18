@@ -1,4 +1,4 @@
-package com.danny.forlinkbackendspringboot.Nation;
+package com.danny.forlinkbackendspringboot.nation;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
