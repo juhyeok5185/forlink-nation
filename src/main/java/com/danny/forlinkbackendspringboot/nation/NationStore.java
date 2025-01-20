@@ -17,4 +17,9 @@ public class NationStore {
         nation.update(request);
         return nationRepository.save(nation);
     }
+
+    public Integer delete(Nation nation) {
+        nationRepository.delete(nation);
+        return nation.getNotionId();
+    }
 }

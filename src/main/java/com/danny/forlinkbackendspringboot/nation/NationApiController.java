@@ -25,14 +25,19 @@ public class NationApiController {
         return ResponseEntity.ok(new ApiResponse<>(nationService.findAll()));
     }
 
-    @GetMapping("{nationId}")
+    @GetMapping("/{nationId}")
     private ResponseEntity<ApiResponse<NationResponse>> findById(@PathVariable Integer nationId){
         return ResponseEntity.ok(new ApiResponse<>(nationService.findById(nationId)));
     }
 
-    @PatchMapping("{nationId}")
+    @PatchMapping("/{nationId}")
     private ResponseEntity<ApiResponse<NationResponse>> update(@PathVariable Integer nationId, @RequestBody @Valid NationRequest request){
         return ResponseEntity.ok(new ApiResponse<>(nationService.update(nationId, request)));
+    }
+
+    @DeleteMapping("/{nationId}")
+    private ResponseEntity<ApiResponse<Integer>> delete(@PathVariable Integer nationId){
+        return ResponseEntity.ok(new ApiResponse<>(nationService.delete(nationId)));
     }
 
 

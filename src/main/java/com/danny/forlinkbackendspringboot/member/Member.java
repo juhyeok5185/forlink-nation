@@ -1,7 +1,6 @@
 package com.danny.forlinkbackendspringboot.member;
 
 
-import com.danny.forlinkbackendspringboot.nation.Nation;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,5 +28,9 @@ public class Member { // 회원 엔티티
 
     @Column(name = "name")
     private String name; // 회원 이름
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role")
+    private MemberRole role; // 회원 역할
 
 }

@@ -38,4 +38,8 @@ public class NationService {
         return modelMapper.map(nation, NationResponse.class);
     }
 
+    public Integer delete(Integer nationId) {
+        nationStore.delete(nationReader.findById(nationId));
+        return nationId;
+    }
 }
