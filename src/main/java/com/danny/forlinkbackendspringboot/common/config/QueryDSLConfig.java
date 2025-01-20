@@ -1,4 +1,4 @@
-package com.danny.forlinkbackendspringboot.config;
+package com.danny.forlinkbackendspringboot.common.config;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;

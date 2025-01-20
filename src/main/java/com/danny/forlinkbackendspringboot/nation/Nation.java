@@ -23,4 +23,8 @@ public class Nation { // 회원 엔티티
     @Column(name = "name")
     private String name; // 회원 이름
 
+    public void update(NationRequest request) {
+        this.code = request.getCode();
+        this.name = request.getName();
+    }
 }

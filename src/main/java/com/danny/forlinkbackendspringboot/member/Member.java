@@ -18,9 +18,8 @@ public class Member { // 회원 엔티티
     @Column(name = "t_member_id")
     private Long memberId; // 회원 일련번호
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "t_nation_id")
-    private Nation nation;          // 국가 테이블
+    @Column(name = "t_nation_id")
+    private Integer nationId; // 국가 일련번호
 
     @Column(name = "login_id")
     private String loginId; // 회원 로그인 아이디

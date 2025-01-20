@@ -1,17 +1,39 @@
 package com.danny.forlinkbackendspringboot.nation;
 
+import com.danny.forlinkbackendspringboot.common.response.ApiResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@RequestMapping("/api/nation")
 @RequiredArgsConstructor
+@RequestMapping("/api/nation")
 public class NationApiController {
 
-    @GetMapping
-    public void findAll(){
+    private final NationService nationService;
+
+    @PostMapping
+    private ResponseEntity<ApiResponse<NationResponse>> save(@RequestBody @Valid NationRequest request){
+        return ResponseEntity.ok(new ApiResponse<>(nationService.save(request)));
     }
+
+    @GetMapping
+    private ResponseEntity<ApiResponse<List<NationResponse>>> findAll(){
+        return ResponseEntity.ok(new ApiResponse<>(nationService.findAll()));
+    }
+
+    @GetMapping("{nationId}")
+    private ResponseEntity<ApiResponse<NationResponse>> findById(@PathVariable Integer nationId){
+        return ResponseEntity.ok(new ApiResponse<>(nationService.findById(nationId)));
+    }
+
+    @PatchMapping("{nationId}")
+    private ResponseEntity<ApiResponse<NationResponse>> update(@PathVariable Integer nationId, @RequestBody @Valid NationRequest request){
+        return ResponseEntity.ok(new ApiResponse<>(nationService.update(nationId, request)));
+    }
+
 
 }
