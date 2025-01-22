@@ -1,9 +1,6 @@
 package com.danny.forlinkbackendspringboot.common.config;
 
 import com.danny.forlinkbackendspringboot.common.util.AES256Utils;
-import com.danny.forlinkbackendspringboot.member.Member;
-import com.danny.forlinkbackendspringboot.member.MemberReader;
-import com.danny.forlinkbackendspringboot.member.MemberRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import jakarta.servlet.FilterChain;

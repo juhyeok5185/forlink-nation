@@ -12,3 +12,5 @@ EXPOSE 10000
 
 # 5. Run the application on port 10000
 ENTRYPOINT ["java", "-jar", "app.jar", "--server.port=10000"]
+
+#docker run -d --name forlink-nation -p 10000:10000 forlink-nation:10000
