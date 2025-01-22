@@ -16,6 +16,7 @@ public class MemberService {
     private final MemberReader memberReader;
     private final MemberStore memberStore;
     private final ModelMapper modelMapper;
+//    private final NationProducer nationProducer;
     private final PasswordEncoder passwordEncoder;
 
     public MemberResponse save(MemberRequest request) {
@@ -36,6 +37,16 @@ public class MemberService {
         if (!passwordEncoder.matches(request.getPassword(), member.getPassword())) {
             throw new MyException("비밀번호가 틀렸습니다.");
         }
-        return JWTUtils.generateToken(member.getLoginId(), member.getRole().name());
+        return "Bearer " + JWTUtils.generateToken(member.getLoginId(), member.getRole().name());
+    }
+
+    public MemberResponse findById(Long memberId) {
+        Member member = memberReader.findById(memberId);
+        return MemberResponse.builder()
+                .memberId(member.getMemberId())
+                .nationId(member.getNationId())
+                .loginId(AES256Utils.decrypt(member.getLoginId()))
+                .name(AES256Utils.decrypt(member.getName()))
+                .build();
     }
 }

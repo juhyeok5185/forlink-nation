@@ -2,6 +2,7 @@ package com.danny.forlinkbackendspringboot.nation;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,25 +15,25 @@ public class NationService {
     private final NationStore nationStore;
     private final ModelMapper modelMapper;
 
-    @Transactional
+//    @Transactional
     public NationResponse save(NationRequest request) {
         Nation nation = nationStore.save(modelMapper.map(request, Nation.class));
         return modelMapper.map(nation, NationResponse.class);
     }
 
-    @Transactional
+//    @Transactional
     public List<NationResponse> findAll() {
         return nationReader.findAll().stream()
                 .map(item -> modelMapper.map(item, NationResponse.class))
                 .toList();
     }
 
-    @Transactional
+//    @Transactional
     public NationResponse findById(Integer nationId) {
         return modelMapper.map(nationReader.findById(nationId), NationResponse.class);
     }
 
-    @Transactional
+//    @Transactional
     public NationResponse update(Integer nationId, NationRequest request) {
         Nation nation = nationStore.update(nationReader.findById(nationId), request);
         return modelMapper.map(nation, NationResponse.class);

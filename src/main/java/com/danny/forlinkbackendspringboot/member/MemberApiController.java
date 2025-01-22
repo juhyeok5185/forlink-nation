@@ -4,10 +4,7 @@ import com.danny.forlinkbackendspringboot.common.response.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -16,7 +13,7 @@ public class MemberApiController {
 
     private final MemberService memberService;
 
-    @PostMapping
+    @PostMapping("/save")
     public ResponseEntity<ApiResponse<MemberResponse>> save(@RequestBody @Valid MemberRequest request) {
         return ResponseEntity.ok(new ApiResponse<>(memberService.save(request)));
     }
@@ -26,4 +23,11 @@ public class MemberApiController {
         String token = memberService.login(request);
         return ResponseEntity.ok(new ApiResponse<>(token));
     }
+
+    @GetMapping("/{memberId}")
+    public ResponseEntity<ApiResponse<MemberResponse>> findById(@PathVariable Long memberId) {
+        return ResponseEntity.ok(new ApiResponse<>(memberService.findById(memberId)));
+    }
+
+
 }

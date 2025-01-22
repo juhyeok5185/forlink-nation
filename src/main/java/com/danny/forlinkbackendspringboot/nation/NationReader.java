@@ -12,6 +12,7 @@ public class NationReader {
 
     private final NationRepository nationRepository;
 
+
     public List<Nation> findAll() {
         return nationRepository.findAll();
     }

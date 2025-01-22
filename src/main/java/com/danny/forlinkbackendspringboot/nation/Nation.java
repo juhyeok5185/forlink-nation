@@ -1,6 +1,7 @@
 package com.danny.forlinkbackendspringboot.nation;
 
 
+import com.danny.forlinkbackendspringboot.common.entity.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -10,7 +11,7 @@ import lombok.*;
 @Entity
 @Builder
 @Table(name = "t_nation")
-public class Nation { // 회원 엔티티
+public class Nation extends BaseTimeEntity { // 회원 엔티티
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
