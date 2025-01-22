@@ -13,6 +13,7 @@ EXPOSE 10000
 # 5. Run the application on port 10000
 ENTRYPOINT ["java", "-jar", "app.jar", "--server.port=10000"]
 
+# 네트워크가 없다면 docker network create forlink-network
 #docker build -t forlink-nation .
 #docker run --name forlink-nation -d -p 10001:10001 forlink-nation
 #docker network connect forlink-network forlink-nation
