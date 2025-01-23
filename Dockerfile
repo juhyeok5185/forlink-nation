@@ -20,7 +20,7 @@ ENTRYPOINT ["java", "-jar", "app.jar", "--server.port=10000"]
 
 
 
-#쿠버네티스
+#쿠버네티스2
 #kubectl apply -f forlink-nation-deployment.yaml
 #kubectl apply -f forlink-nation-service.yaml
 #kubectl get pods
