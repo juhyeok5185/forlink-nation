@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: forlink-nation-deployment
+  labels:
+    app: forlink-nation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: forlink-nation
+  template:
+    metadata:
+      labels:
+        app: forlink-nation
+    spec:
+      containers:
+        - name: forlink-nation
+          image: forlink-nation:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 10000
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
