@@ -17,3 +17,13 @@ ENTRYPOINT ["java", "-jar", "app.jar", "--server.port=10000"]
 #docker build -t forlink-nation .
 #docker run --name forlink-nation -d -p 10000:10000 forlink-nation
 #docker network connect forlink-network forlink-nation
+
+
+
+#쿠버네티스
+#kubectl apply -f forlink-nation-deployment.yaml
+#kubectl apply -f forlink-nation-service.yaml
+#kubectl get pods
+#쿠버네티스 삭제
+#kubectl delete deployment forlink-nation-deployment
+#kubectl delete service forlink-nation-service
