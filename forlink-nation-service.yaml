@@ -1,3 +1,4 @@
+# forlink-nation-service.yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -5,9 +6,21 @@ metadata:
 spec:
   selector:
     app: forlink-nation
-  type: NodePort
+  type: ClusterIP  # NodePort -> ClusterIP로 변경
   ports:
     - protocol: TCP
       port: 10000
       targetPort: 10000
-      nodePort: 30000
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: forlink-nation-service
+#spec:
+#  selector:
+#    app: forlink-nation
+#  type: NodePort
+#  ports:
+#    - protocol: TCP
+#      port: 10000
+#      targetPort: 10000
+#      nodePort: 30000
