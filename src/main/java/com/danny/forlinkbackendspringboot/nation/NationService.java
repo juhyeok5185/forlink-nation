@@ -15,30 +15,31 @@ public class NationService {
     private final NationStore nationStore;
     private final ModelMapper modelMapper;
 
-//    @Transactional
+    @Transactional
     public NationResponse save(NationRequest request) {
         Nation nation = nationStore.save(modelMapper.map(request, Nation.class));
         return modelMapper.map(nation, NationResponse.class);
     }
 
-//    @Transactional
+    @Transactional(readOnly = true)
     public List<NationResponse> findAll() {
         return nationReader.findAll().stream()
                 .map(item -> modelMapper.map(item, NationResponse.class))
                 .toList();
     }
 
-//    @Transactional
+    @Transactional(readOnly = true)
     public NationResponse findById(Integer nationId) {
         return modelMapper.map(nationReader.findById(nationId), NationResponse.class);
     }
 
-//    @Transactional
+    @Transactional
     public NationResponse update(Integer nationId, NationRequest request) {
         Nation nation = nationStore.update(nationReader.findById(nationId), request);
         return modelMapper.map(nation, NationResponse.class);
     }
 
+    @Transactional
     public Integer delete(Integer nationId) {
         nationStore.delete(nationReader.findById(nationId));
         return nationId;

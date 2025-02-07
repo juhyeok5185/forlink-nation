@@ -26,30 +26,30 @@ public class NationApiController {
     @PostMapping
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<ApiResponse<NationResponse>> save(@RequestBody @Valid NationRequest request){
-        return ResponseEntity.ok(new ApiResponse<>(nationService.save(request)));
+        return ResponseEntity.status(201).body(new ApiResponse<>("저장 성공",201,nationService.save(request)));
     }
 
     @GetMapping
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<ApiResponse<List<NationResponse>>> findAll(Authentication authentication){
-        return ResponseEntity.ok(new ApiResponse<>(nationService.findAll()));
+        return ResponseEntity.ok(new ApiResponse<>("list 조회 성공",200,nationService.findAll()));
     }
 
     @GetMapping("/{nationId}")
     public ResponseEntity<ApiResponse<NationResponse>> findById(@PathVariable Integer nationId){
-        return ResponseEntity.ok(new ApiResponse<>(nationService.findById(nationId)));
+        return ResponseEntity.ok(new ApiResponse<>("조회 성공",200,nationService.findById(nationId)));
     }
 
     @PatchMapping("/{nationId}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<ApiResponse<NationResponse>> update(@PathVariable Integer nationId, @RequestBody @Valid NationRequest request){
-        return ResponseEntity.ok(new ApiResponse<>(nationService.update(nationId, request)));
+        return ResponseEntity.ok(new ApiResponse<>("수정 성공",200,nationService.update(nationId, request)));
     }
 
     @DeleteMapping("/{nationId}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<ApiResponse<Integer>> delete(@PathVariable Integer nationId){
-        return ResponseEntity.ok(new ApiResponse<>(nationService.delete(nationId)));
+        return ResponseEntity.ok(new ApiResponse<>("삭제 성공",200 ,nationService.delete(nationId)));
     }
 
 }
