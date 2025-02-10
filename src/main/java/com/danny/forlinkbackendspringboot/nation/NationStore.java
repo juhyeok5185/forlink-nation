@@ -13,13 +13,6 @@ public class NationStore {
         return nationRepository.save(nation);
     }
 
-    public Nation update(Nation nation , NationRequest request) {
-        nation.update(request);
-        return nationRepository.save(nation);
-    }
 
-    public Integer delete(Nation nation) {
-        nationRepository.delete(nation);
-        return nation.getNotionId();
-    }
+    public void delete(Nation nation) {nationRepository.delete(nation);}
 }

@@ -35,13 +35,16 @@ public class NationService {
 
     @Transactional
     public NationResponse update(Integer nationId, NationRequest request) {
-        Nation nation = nationStore.update(nationReader.findById(nationId), request);
+        Nation nation = nationReader.findById(nationId);
+        nation.update(request);
+        nationStore.save(nation);
         return modelMapper.map(nation, NationResponse.class);
     }
 
     @Transactional
     public Integer delete(Integer nationId) {
-        nationStore.delete(nationReader.findById(nationId));
+        Nation nation = nationReader.findById(nationId);
+        nationStore.delete(nation);
         return nationId;
     }
 }
