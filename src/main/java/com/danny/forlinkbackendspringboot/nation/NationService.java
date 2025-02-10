@@ -13,24 +13,25 @@ import java.util.List;
 public class NationService {
     private final NationReader nationReader;
     private final NationStore nationStore;
+    private final NationFactory nationFactory;
     private final ModelMapper modelMapper;
 
     @Transactional
     public NationResponse save(NationRequest request) {
-        Nation nation = nationStore.save(modelMapper.map(request, Nation.class));
+        Nation nation = nationStore.save(nationFactory.createEntity(request));
         return modelMapper.map(nation, NationResponse.class);
     }
 
     @Transactional(readOnly = true)
     public List<NationResponse> findAll() {
         return nationReader.findAll().stream()
-                .map(item -> modelMapper.map(item, NationResponse.class))
+                .map(nationFactory::createResponse)
                 .toList();
     }
 
     @Transactional(readOnly = true)
     public NationResponse findById(Integer nationId) {
-        return modelMapper.map(nationReader.findById(nationId), NationResponse.class);
+        return nationFactory.createResponse(nationReader.findById(nationId));
     }
 
     @Transactional
