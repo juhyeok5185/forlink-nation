@@ -14,12 +14,11 @@ public class NationService {
     private final NationReader nationReader;
     private final NationStore nationStore;
     private final NationFactory nationFactory;
-    private final ModelMapper modelMapper;
 
     @Transactional
     public NationResponse save(NationRequest request) {
         Nation nation = nationStore.save(nationFactory.createEntity(request));
-        return modelMapper.map(nation, NationResponse.class);
+        return nationFactory.createResponse(nation);
     }
 
     @Transactional(readOnly = true)
@@ -39,7 +38,7 @@ public class NationService {
         Nation nation = nationReader.findById(nationId);
         nation.update(request);
         nationStore.save(nation);
-        return modelMapper.map(nation, NationResponse.class);
+        return nationFactory.createResponse(nation);
     }
 
     @Transactional
