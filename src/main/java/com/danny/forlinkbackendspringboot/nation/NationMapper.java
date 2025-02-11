@@ -6,14 +6,14 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class NationFactory {
+public class NationMapper {
     private final ModelMapper modelMapper;
 
-    public Nation createEntity(NationRequest request) {
+    public Nation toEntity(NationRequest request) {
         return modelMapper.map(request, Nation.class);
     }
 
-    public NationResponse createResponse(Nation nation) {
+    public NationResponse toResponse(Nation nation) {
         return modelMapper.map(nation, NationResponse.class);
     }
 }

@@ -1,5 +1,6 @@
 package com.danny.forlinkbackendspringboot.common.entity;
 
+import com.querydsl.core.types.dsl.BooleanExpression;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.PrePersist;
@@ -11,6 +12,9 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 public abstract class BaseTimeEntity {
 
+    @Column(name = "use_yn")
+    private Boolean useYn;
+
     @Column(name = "save_dtm")
     private LocalDateTime saveDtm; // 등록일시
 
@@ -20,6 +24,7 @@ public abstract class BaseTimeEntity {
     @PrePersist
     public void prePersist() {
         LocalDateTime now = LocalDateTime.now();
+        this.useYn = true;
         this.saveDtm = now;
         this.modDtm = now;
     }
@@ -27,6 +32,10 @@ public abstract class BaseTimeEntity {
     @PreUpdate
     public void preUpdate() {
         this.modDtm = LocalDateTime.now();
+    }
+
+    public void updateUseYn() {
+        this.useYn = !this.useYn;
     }
 
 }

@@ -17,6 +17,10 @@ public class NationReader {
         return nationRepository.findAll();
     }
 
+    public List<Nation> findAllByUseYnTrue() {
+        return nationRepository.findAllByUseYnTrue();
+    }
+
     public Nation findById(Integer nationId) {
         return nationRepository.findById(nationId)
                 .orElseThrow(

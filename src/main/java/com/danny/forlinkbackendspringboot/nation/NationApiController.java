@@ -31,8 +31,8 @@ public class NationApiController {
 
     @GetMapping
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<ApiResponse<List<NationResponse>>> findAll(Authentication authentication){
-        return ResponseEntity.ok(new ApiResponse<>("list 조회 성공",200,nationService.findAll()));
+    public ResponseEntity<ApiResponse<List<NationResponse>>> findAllByUseYnTrue(Authentication authentication){
+        return ResponseEntity.ok(new ApiResponse<>("list 조회 성공",200,nationService.findAllByUseYnTrue()));
     }
 
     @GetMapping("/{nationId}")

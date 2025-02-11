@@ -28,4 +28,5 @@ public class Nation extends BaseTimeEntity { // 회원 엔티티
         this.code = request.getCode();
         this.name = request.getName();
     }
+
 }

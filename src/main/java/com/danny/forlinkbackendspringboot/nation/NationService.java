@@ -1,8 +1,6 @@
 package com.danny.forlinkbackendspringboot.nation;
 
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,24 +11,26 @@ import java.util.List;
 public class NationService {
     private final NationReader nationReader;
     private final NationStore nationStore;
-    private final NationFactory nationFactory;
+    private final NationMapper nationMapper;
 
     @Transactional
     public NationResponse save(NationRequest request) {
-        Nation nation = nationStore.save(nationFactory.createEntity(request));
-        return nationFactory.createResponse(nation);
+        Nation nation = nationMapper.toEntity(request);
+        return nationMapper.toResponse(nationStore.save(nation));
     }
 
     @Transactional(readOnly = true)
-    public List<NationResponse> findAll() {
-        return nationReader.findAll().stream()
-                .map(nationFactory::createResponse)
+    public List<NationResponse> findAllByUseYnTrue() {
+        List<Nation> nationList = nationReader.findAllByUseYnTrue();
+        return nationList.stream()
+                .map(nationMapper::toResponse)
                 .toList();
     }
 
     @Transactional(readOnly = true)
     public NationResponse findById(Integer nationId) {
-        return nationFactory.createResponse(nationReader.findById(nationId));
+        Nation nation = nationReader.findById(nationId);
+        return nationMapper.toResponse(nation);
     }
 
     @Transactional
@@ -38,13 +38,13 @@ public class NationService {
         Nation nation = nationReader.findById(nationId);
         nation.update(request);
         nationStore.save(nation);
-        return nationFactory.createResponse(nation);
+        return nationMapper.toResponse(nation);
     }
 
     @Transactional
     public Integer delete(Integer nationId) {
         Nation nation = nationReader.findById(nationId);
-        nationStore.delete(nation);
+        nation.updateUseYn();
         return nationId;
     }
 }
